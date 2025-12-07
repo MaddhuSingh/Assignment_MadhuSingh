@@ -1,0 +1,31 @@
+import psutil
+
+cpu_usage = psutil.cpu_percent(interval=1)   # sample CPU usage for 1 second
+
+print("Current CPU usage:", cpu_usage, "%")
+if cpu_usage < 50:
+    print("✅ CPU usage is low.")   
+else:
+    print("❌ CPU usage is high, consider closing some applications.")
+
+
+
+
+
+memory = psutil.virtual_memory()
+print("Total Memory:", round(memory.total / (1024 ** 3), 2),"GB")
+print("Available Memory:", round(memory.available / (1024 ** 3), 2), "GB")
+if memory.available / memory.total > 0.2:
+    print("✅ Sufficient memory available.")
+else:
+    print("❌ Low memory available, consider closing some applications.")
+
+
+
+disk = psutil.disk_usage('/')
+print("Total Disk Space:", round(disk.total / (1024 ** 3), 2), "GB")
+print("Free Disk Space:", round(disk.free / (1024 ** 3), 2), "GB")
+if disk.free / disk.total > 0.1:
+    print("✅ Sufficient disk space available.")
+else:
+    print("❌ Low disk space available, consider deleting unnecessary files.")  
